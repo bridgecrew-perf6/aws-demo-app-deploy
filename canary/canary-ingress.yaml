@@ -3,9 +3,8 @@ kind: Ingress
 metadata:
   name: canary-demo
   annotations:
-    ingress.kubernetes.io/proxy-body-size: 100M
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/app-root: /
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
 spec:
   rules:
   - host: canary.dev.argoproj.io
