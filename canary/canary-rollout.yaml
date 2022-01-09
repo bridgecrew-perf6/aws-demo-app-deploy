@@ -35,6 +35,7 @@ spec:
             port: 8080
           initialDelaySeconds: 15
           periodSeconds: 20
+      terminationGracePeriodSeconds: 600
   strategy:
     canary:
       canaryService: canary-demo-preview
