@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: aws-demo-promote-prod-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: aws-demo-promote-prod
+        image: alpine/git
+        command:
+          - "git"
+          - "clone"
+          - "https://$GIT_USERNAME:$GIT_PASSWORD@git-codecommit.eu-west-1.amazonaws.com/v1/repos/aws-demo-app-deploy"
+          - "-b"
+          - "prod"
+          - "&&"
+          - "cd"
+          - "aws-demo-app-deploy"
+          - "&&"
+          - "sed"
+          - "-i"
+          - "-e"
+          - "s#image:\ 985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo:.*#image:\ 985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo:bcd1a81a#g"
+          - "canary/canary-rollout.yaml"
+          - "&&"
+          - "git"
+          - "config"
+          - "--global" 
+          - "user.email"
+          - "codebuild@aws.com"
+          - "&&"
+          - "git"
+          - "config"
+          - "--global" 
+          - "user.name"
+          - "CodeBuild"
+          - "&&"
+          - "git"
+          - "commit" 
+          - "-am" 
+          - "version update"
+          - "&&"
+          - "git"
+          - "push"
+          - "origin"
+          - "prod"
+        env:
+          - name: GIT_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: aws-codecommit
+                key: username
+          - name: GIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: aws-codecommit
+                key: password
+      restartPolicy: Never
+  backoffLimit: 2
