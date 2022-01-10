@@ -1,0 +1,56 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: error-rate
+spec:
+  metrics:
+  - name: error-rate
+    interval: 30s
+    successCondition: "all(result[0].Values, {# <= 0.05})"
+    failureLimit: 1
+    provider:
+      cloudWatch:
+        interval: 2m
+        metricDataQueries:
+        - {
+            "id": "rate",
+            "expression": "errors / requests"
+          }
+        - {
+            "id": "errors",
+            "metricStat": {
+              "metric": {
+                "namespace": "AWS/ApplicationELB",
+                "metricName": "HTTPCode_Target_5XX_Count",
+                "dimensions": [
+                  {
+                    "name": "LoadBalancer",
+                    "value": "app/k8s-prodapp-canaryde-71fe6da151/c68323dfa74eae4d"
+                  }
+                ]
+              },
+              "period": 30,
+              "stat": "Sum",
+              "unit": "Count"
+            },
+            "returnData": true
+          }
+        - {
+            "id": "requests",
+            "metricStat": {
+              "metric": {
+                "namespace": "AWS/ApplicationELB",
+                "metricName": "HTTPCode_Target_2XX_Count",
+                "dimensions": [
+                  {
+                    "name": "LoadBalancer",
+                    "value": "app/k8s-prodapp-canaryde-71fe6da151/c68323dfa74eae4d"
+                  }
+                ]
+              },
+              "period": 30,
+              "stat": "Sum",
+              "unit": "Count"
+            },
+            "returnData": true
+          }
