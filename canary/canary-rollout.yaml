@@ -38,6 +38,9 @@ spec:
       terminationGracePeriodSeconds: 600
   strategy:
     canary:
+      analysis:
+        templates:
+        - templateName: success-rate
       canaryService: canary-demo-preview
       steps:
       - setWeight: 20
