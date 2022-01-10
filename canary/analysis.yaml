@@ -29,7 +29,7 @@ spec:
                   }
                 ]
               },
-              "period": 5,
+              "period": 30,
               "stat": "Sum",
               "unit": "Count"
             },
@@ -48,7 +48,7 @@ spec:
                   }
                 ]
               },
-              "period": 5,
+              "period": 30,
               "stat": "Sum",
               "unit": "Count"
             },
