@@ -21,9 +21,15 @@ spec:
             "metricStat": {
               "metric": {
                 "namespace": "AWS/ApplicationELB",
-                "metricName": "HTTPCode_Target_5XX_Count"
+                "metricName": "HTTPCode_Target_5XX_Count",
+                "dimensions": [
+                  {
+                    "name": "LoadBalancer",
+                    "value": "app/k8s-testapp-canaryde-0f7124f27b/1a76aa256a0e5306"
+                  }
+                ]
               },
-              "period": 60,
+              "period": 30,
               "stat": "Sum",
               "unit": "Count"
             },
@@ -34,7 +40,13 @@ spec:
             "metricStat": {
               "metric": {
                 "namespace": "AWS/ApplicationELB",
-                "metricName": "HTTPCode_Target_2XX_Count"
+                "metricName": "HTTPCode_Target_2XX_Count",
+                "dimensions": [
+                  {
+                    "name": "LoadBalancer",
+                    "value": "app/k8s-testapp-canaryde-0f7124f27b/1a76aa256a0e5306"
+                  }
+                ]
               },
               "period": 60,
               "stat": "Sum",
