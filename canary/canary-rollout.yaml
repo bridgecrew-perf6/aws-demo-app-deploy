@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: 985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo:bcd1a81a
+        image: 985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo:8c13aee1
         imagePullPolicy: Always
         ports:
         - name: http
