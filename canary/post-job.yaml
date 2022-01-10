@@ -30,7 +30,7 @@ spec:
             value: git-codecommit.eu-west-1.amazonaws.com/v1/repos/aws-demo-app-deploy
           - name: GIT_BRANCH
             value: prod
-          - name: GIT_MESSAGE
+          - name: GIT_COMMIT_MSG
             value: update version
           - name: SED_IMAGE
             value: "985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo"
