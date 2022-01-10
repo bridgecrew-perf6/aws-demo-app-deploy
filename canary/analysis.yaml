@@ -10,7 +10,7 @@ spec:
     failureLimit: 3
     provider:
       cloudWatch:
-        interval: 30m
+        interval: 5m
         metricDataQueries:
         - {
             "id": "rate",
@@ -20,25 +20,25 @@ spec:
             "id": "errors",
             "metricStat": {
               "metric": {
-                "namespace": "app",
-                "metricName": "errors"
+                "namespace": "AWS/ApplicationELB",
+                "metricName": "HTTPCode_Target_5XX_Count"
               },
-              "period": 300,
+              "period": 60,
               "stat": "Sum",
               "unit": "Count"
             },
-            "returnData": false
+            "returnData": true
           }
         - {
             "id": "requests",
             "metricStat": {
               "metric": {
-                "namespace": "app",
-                "metricName": "requests"
+                "namespace": "AWS/ApplicationELB",
+                "metricName": "HTTPCode_Target_2XX_Count"
               },
-              "period": 300,
+              "period": 60,
               "stat": "Sum",
               "unit": "Count"
             },
-            "returnData": false
+            "returnData": true
           }
