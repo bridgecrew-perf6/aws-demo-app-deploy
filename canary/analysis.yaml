@@ -20,7 +20,7 @@ spec:
             "id": "errors",
             "metricStat": {
               "metric": {
-                "namespace": "LoadBalancer",
+                "namespace": "AWS/ApplicationELB",
                 "metricName": "HTTPCode_Target_5XX_Count"
               },
               "period": 300,
@@ -33,7 +33,7 @@ spec:
             "id": "requests",
             "metricStat": {
               "metric": {
-                "namespace": "LoadBalancer",
+                "namespace": "AWS/ApplicationELB",
                 "metricName": "HTTPCode_Target_2XX_Count"
               },
               "period": 300,
