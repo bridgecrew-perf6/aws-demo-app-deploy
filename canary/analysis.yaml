@@ -5,12 +5,12 @@ metadata:
 spec:
   metrics:
   - name: success-rate
-    interval: 1m
-    successCondition: "all(result[0].Values, {# <= 0.01})"
+    interval: 30s
+    successCondition: "all(result[0].Values, {# <= 0.05})"
     failureLimit: 3
     provider:
       cloudWatch:
-        interval: 5m
+        interval: 2m
         metricDataQueries:
         - {
             "id": "rate",
@@ -29,7 +29,7 @@ spec:
                   }
                 ]
               },
-              "period": 30,
+              "period": 5,
               "stat": "Sum",
               "unit": "Count"
             },
@@ -48,7 +48,7 @@ spec:
                   }
                 ]
               },
-              "period": 30,
+              "period": 5,
               "stat": "Sum",
               "unit": "Count"
             },
