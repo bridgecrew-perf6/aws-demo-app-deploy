@@ -35,7 +35,7 @@ spec:
           - name: SED_IMAGE
             value: "985266629220.dkr.ecr.eu-west-1.amazonaws.com/aws-demo"
           - name: SED_TAG
-            value: 02176b34
+            value: 82359df1
           - name: SED_FILE
             value: ./canary/canary-rollout.yaml
       restartPolicy: Never
