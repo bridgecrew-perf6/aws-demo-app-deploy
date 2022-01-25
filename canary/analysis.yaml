@@ -25,7 +25,7 @@ spec:
                 "dimensions": [
                   {
                     "name": "LoadBalancer",
-                    "value": "app/k8s-testapp-canaryde-0f7124f27b/1a76aa256a0e5306"
+                    "value": "app/k8s-testapp-canaryde-ceb455b9df/f23a685ee41e11f4"
                   }
                 ]
               },
@@ -44,7 +44,7 @@ spec:
                 "dimensions": [
                   {
                     "name": "LoadBalancer",
-                    "value": "app/k8s-testapp-canaryde-0f7124f27b/1a76aa256a0e5306"
+                    "value": "app/k8s-testapp-canaryde-ceb455b9df/f23a685ee41e11f4"
                   }
                 ]
               },
